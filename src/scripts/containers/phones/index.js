@@ -1,14 +1,28 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import {fetchPhones} from "../../actions/index";
 
-const Phones = () => (
-    <div>
-        Phones
-    </div>
-)
+class Phones extends Component {
+    componentDidMount() {
+        this.props.fetchPhones()
+    }
+    render() {
+        return(
+            <div>
+                Phones
+            </div>
+        )
+    }
+}
 
-export default Phones;
+const mapDispatchToProps = {
+    fetchPhones
+}
+
+export default connect(null, mapDispatchToProps)(Phones);
 
 Phones.propTypes = {
+    fetchPhones: PropTypes.func
   
 }
