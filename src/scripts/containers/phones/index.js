@@ -70,6 +70,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(Phones);
 
 Phones.propTypes = {
     fetchPhones: PropTypes.func,
-    phones: PropTypes.object
+    phones: PropTypes.array
   
 }
