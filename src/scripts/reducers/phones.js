@@ -4,17 +4,17 @@ import {
  } from "../actionTypes";
 import * as R from "ramda";
  
-const initialState = [
+const initialState = {
     
-]
+}
 
 const newValues = (state, payload) => {
-    R.indexBy(R.prop("id"), payload)
+    let newValues = R.indexBy(R.prop("id"), payload);
     return R.merge(state, newValues)
 }
 
 const moreValues = (state, payload) => {
-    R.indexBy(R.prop("id"), payload)
+    let moreValues = R.indexBy(R.prop("id"), payload);
     return R.merge(state, moreValues)
 } 
 
