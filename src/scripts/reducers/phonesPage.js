@@ -17,7 +17,7 @@ const initialState = {
     } 
 
     const ids = (state, payload) => {
-        R.pluck("id", payload)
+        let ids = R.pluck("id", payload);
         return R.merge(state, {
             ids: R.concat(state.ids, ids)
         })

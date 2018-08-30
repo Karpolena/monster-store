@@ -3,7 +3,7 @@ import {
     FETCH_PHONES_SUCCESS,
     FETCH_PHONES_FAILURE, 
     LOAD_MORE_PHONES_START,
-    LOAD_MORE_PHONES_SSUCCESS,
+    LOAD_MORE_PHONES_SUCCESS,
     LOAD_MORE_PHONES_FAILURE 
 } from "../actionTypes";
 import { 
@@ -36,7 +36,7 @@ export const loadMorePhones = () => async (dispatch, getState) => {
     try {
         const phones = await loadMorePhonesApi({offset})
         dispatch({
-            type: LOAD_MORE_PHONES_SSUCCESS,
+            type: LOAD_MORE_PHONES_SUCCESS,
             payload: phones 
         })
     } catch (err) {
