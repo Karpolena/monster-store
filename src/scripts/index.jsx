@@ -13,8 +13,8 @@ import { Router, Route } from "react-router";
 
 
 import reducers from "./reducers/index";
-import Layout from "./containers/layout";
-import Phones from "./containers/phones";
+import Layout from "./containers/layout/index";
+import Phones from "./containers/phones/index";
 
 
 const store = createStore(reducers, composeWithDevTools(

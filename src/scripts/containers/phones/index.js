@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {Link} from "react-router";
-import R from "ramda";
+import * as R from "ramda";
 
-import {fetchPhones} from "../../actions/index";
+import {fetchPhones, loadMorePhones} from "../../actions/index";
 import {getPhones} from "../../selectors";
 
 
@@ -28,7 +28,7 @@ class Phones extends Component {
                         <h4>
                             <Link to={`/phones/${phone.id}`}>
                                 {phone.name}
-                            </Link>
+                            </Link> 
                         </h4>
                         <p>{shortDescription}</p>
                         <p className="itemButton">
@@ -47,29 +47,42 @@ class Phones extends Component {
         )
     }
     render() {
-        const {phones} = this.props
+        const {phones, loadMorePhones} = this.props
         return(
             <div>
                 <div className="books row">
                     {phones.map((phone, index) => this.renderPhone(phone, index))}
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <button
+                            onClick={loadMorePhones}
+                            className="pull-right btn btn-primary"
+                        >
+                        Load more
+                        </button>
+                    </div>
                 </div>
             </div>
         )
     }
 }
 
-const mapStateToProps = state => ({
-    phones: getPhones(state)
-})
+const mapStateToProps = state => {
+    return{
+        phones: getPhones(state)
+    }   
+}
 
 const mapDispatchToProps = {
-    fetchPhones
+    fetchPhones,
+    loadMorePhones
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Phones);
 
 Phones.propTypes = {
     fetchPhones: PropTypes.func,
+    loadMorePhones: PropTypes.func,
     phones: PropTypes.array
-  
 }
