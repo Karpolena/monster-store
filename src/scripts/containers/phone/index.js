@@ -2,9 +2,11 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import * as R from "ramda";
+import {Link} from "react-router";
 
-import {fetchPhoneById} from "../../actions/index";
+import {fetchPhoneById, addPhoneToBasket} from "../../actions/index";
 import {getPhoneById} from "../../selectors";
+import BasketCart from "../../components/basketCart";
 
 
 class Phone extends Component {
@@ -63,9 +65,28 @@ class Phone extends Component {
         )
     }
     renderSideBar() {
+        const {phone, addPhoneToBasket} = this.props
         return(
-            <div className="thumbnail">
-                sidebar
+            <div>
+                <p className="lead">Quick shop</p>
+                <BasketCart />
+                <div className="form-group">
+                    <h1>{phone.name}</h1>
+                    <h2>${phone.price}</h2>
+                </div>
+                <Link 
+                to="/" 
+                className="btn btn-info btn-block"
+                >
+                    Back to store
+                </Link>
+                <button
+                    type="button"
+                    className="btn btn-success btn-block"
+                    onClick={() => addPhoneToBasket(phone.id)}    
+                >
+                    Add to cart
+                </button>
             </div>
         )
     }
@@ -94,13 +115,15 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-    fetchPhoneById
+    fetchPhoneById,
+    addPhoneToBasket
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Phone);
 
 Phone.propTypes = {
     fetchPhoneById: PropTypes.func,
+    addPhoneToBasket: PropTypes.func,
     id: PropTypes.number,
     params: PropTypes.object,
     phone: PropTypes.object
