@@ -12,5 +12,4 @@ export default combineReducers({
     phonesPage,
     phonePage,
     basket
-
 })

@@ -1,13 +1,15 @@
+import * as R from "ramda";
+
 import { 
     FETCH_PHONES_SUCCESS,
-    LOAD_MORE_PHONES_SUCCESS
+    LOAD_MORE_PHONES_SUCCESS,
+    SEARCH_PHONE
  } from "../actionTypes";
- import * as R from "ramda";
+ 
 
 const initialState = {
-    ids: [
-    
-    ]
+    ids: [],
+    search: ""
 }
 
     const idf = (state, payload) => {
@@ -23,13 +25,21 @@ const initialState = {
         })
     }
 
+    const searchForm = (state, payload) => {
+        return R.merge(state, {
+            search: payload
+        })
+    }
+
 
 export default (state = initialState, {type, payload}) => {
     switch(type) {
         case FETCH_PHONES_SUCCESS:
             return idf(state, payload);
         case LOAD_MORE_PHONES_SUCCESS:
-            return ids(state, payload);            
+            return ids(state, payload);
+        case SEARCH_PHONE:
+            return searchForm(state, payload);        
         default: 
             return state
     }

@@ -31,7 +31,7 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, null)(BasketCart);
 
 BasketCart.propTypes = {
-    totalBasketCount: PropTypes.func,
-    totalPrice: PropTypes.func
+    totalBasketCount: PropTypes.number,
+    totalPrice: PropTypes.number
 
 }
