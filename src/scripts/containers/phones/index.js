@@ -7,7 +7,8 @@ import * as R from "ramda";
 import {
     fetchPhones,
     loadMorePhones,
-    addPhoneToBasket
+    addPhoneToBasket,
+    fetchCategories
 } from "../../actions/index";
 import {getPhones} from "../../selectors";
 
@@ -15,6 +16,7 @@ import {getPhones} from "../../selectors";
 class Phones extends Component {
     componentDidMount() {
         this.props.fetchPhones()
+        this.props.fetchCategories()
     }
 
     renderPhone (phone, index) {
@@ -76,16 +78,17 @@ class Phones extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
     return{
-        phones: getPhones(state)
+        phones: getPhones(state, ownProps)
     }   
 }
 
 const mapDispatchToProps = {
     fetchPhones,
     loadMorePhones,
-    addPhoneToBasket
+    addPhoneToBasket,
+    fetchCategories
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Phones);
@@ -94,5 +97,6 @@ Phones.propTypes = {
     fetchPhones: PropTypes.func,
     loadMorePhones: PropTypes.func,
     addPhoneToBasket: PropTypes.func,
+    fetchCategories: PropTypes.func,
     phones: PropTypes.array
 }

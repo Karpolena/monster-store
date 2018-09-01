@@ -1,9 +1,11 @@
+import * as R from "ramda";
+
 import { 
     FETCH_PHONES_SUCCESS,
     LOAD_MORE_PHONES_SUCCESS,
     FETCH_PHONE_BY_ID_SUCCESS
  } from "../actionTypes";
-import * as R from "ramda";
+ 
  
 const initialState = {
     
